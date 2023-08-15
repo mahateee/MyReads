@@ -7,10 +7,10 @@ import Bookshelf from './Bookshelf'
 import { Link } from "react-router-dom";
 import BookDetail from './BookDetail'
 function Home() {
-  const [books, setBooks] = useState([]);
+  const [allBooks, setAllBooks] = useState([]);
   useEffect(() => {
     BooksAPI.getAll().then(booksFromApi => {
-      setBooks(booksFromApi);
+      setAllBooks(booksFromApi);
     });
    
   }, []);
@@ -19,7 +19,7 @@ function Home() {
     ,{title:'want to read',shelfName:'wantToRead'}
     ,{title:'read',shelfName:'read'}
   ]
-  console.log(books)
+  console.log(allBooks)
   return (
     <div className="app">
          
@@ -35,12 +35,12 @@ function Home() {
                 key={index}
                 shelfTitle={b.title}
                 books={
-                  books &&
-                  books.filter(
+                  
+                  allBooks.filter(
                     book => book && book.shelf === b.shelfName
                   )
                 }
-                setBooks={setBooks}
+                setAllBooks={setAllBooks}
               />
             ))}
             </div>

@@ -2,13 +2,13 @@ import * as BooksAPI from "../BooksAPI";
 import BookDetail from "./BookDetail";
 import { Link } from "react-router-dom";
 
-function Book({id,title,authors,imageUrl,book,setBooks}){
+function Book({id,title,authors,imageLink,book,setAllBooks}){
 
   console.log(id)
     function handleChange(shelfValue){
         BooksAPI.update(book,shelfValue)
         .then(()=>BooksAPI.getAll())
-        .then((newBook)=>{setBooks(newBook)})
+        .then((newBook)=>{setAllBooks(newBook)})
     }
  
     return( <div className="book">
@@ -18,7 +18,7 @@ function Book({id,title,authors,imageUrl,book,setBooks}){
         style={{
           width: 128,
           height: 193,
-          backgroundImage: `url("${imageUrl}")`
+          backgroundImage: `url("${imageLink}")`
         }}
       ></div>
       <div className="book-shelf-changer">
@@ -39,7 +39,6 @@ function Book({id,title,authors,imageUrl,book,setBooks}){
     <div className="book-authors">{authors}</div>
     <div className="book-detail">
     <Link to={`/books/${id}`}> 
-            
               <button className="book-detail"
               style={{backgroundColor:"green" , color:"white" , borderRadius:"7px", padding:"5px"}}>   book detail</button>
            </Link>

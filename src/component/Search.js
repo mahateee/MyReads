@@ -55,7 +55,7 @@ return(  <div >
                 key={index}
                 title={book.title}
                 authors={book.authors}
-                imageUrl={book.imageLinks && book.imageLinks.thumbnail}
+                imageLink={book.imageLinks && book.imageLinks.thumbnail}
                 isSearching={true}
                 bookshelf={book.shelf}
                 book={book}
