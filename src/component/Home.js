@@ -23,7 +23,6 @@ function Home() {
   return (
     <div className="app">
          
-<BookDetail/>
         <div className="list-books">
           <div className="list-books-title">
             <h1>MyReads</h1>

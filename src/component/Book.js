@@ -1,6 +1,10 @@
 import * as BooksAPI from "../BooksAPI";
-function Book({title,authors,imageUrl,book,setBooks}){
+import BookDetail from "./BookDetail";
+import { Link } from "react-router-dom";
 
+function Book({id,title,authors,imageUrl,book,setBooks}){
+
+  console.log(id)
     function handleChange(shelfValue){
         BooksAPI.update(book,shelfValue)
         .then(()=>BooksAPI.getAll())
@@ -33,6 +37,14 @@ function Book({title,authors,imageUrl,book,setBooks}){
     </div>
     <div className="book-title">{title}</div>
     <div className="book-authors">{authors}</div>
+    <div className="book-detail">
+    <Link to={`/books/${id}`}> 
+            
+              <button className="book-detail"
+              style={{backgroundColor:"green" , color:"white" , borderRadius:"7px", padding:"5px"}}>   book detail</button>
+           </Link>
+    </div>
+
   </div>)
 }
 export default Book

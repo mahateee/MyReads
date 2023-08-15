@@ -6,7 +6,7 @@ function Bookshelf({shelfTitle,books,setBooks }){
     <div className="bookshelf-books">
       <ol className="books-grid">
         {books.map((book,index)=>{
-   return(<Book key={index} title={book.title} authors={book.authors} setBooks={setBooks} book={book} imageUrl={book.imageLinks && book.imageLinks.thumbnail}/>)
+   return(<Book key={index} id={book.id} title={book.title} authors={book.authors} setBooks={setBooks} book={book} imageUrl={book.imageLinks && book.imageLinks.thumbnail}/>)
         })}
         <li>
      

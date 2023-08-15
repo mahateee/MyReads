@@ -6,7 +6,9 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-
+import * as BooksAPI from "../BooksAPI"
+import { useState,useEffect } from "react";
+import { useParams } from "react-router"
 const bull = (
     <Box
       component="span"
@@ -16,26 +18,48 @@ const bull = (
     </Box>
   );
 export default function BookDetail() {
+  const params = useParams();
+  const [bookDetail, setBookDetail] = useState({});
+  useEffect(() => {
+    BooksAPI.get(`${params.id}`).then(booksFromApi => {
+      setBookDetail(booksFromApi);
+    });
+   
+  }, []);
+  
+ 
+  console.log(bookDetail);
+
  return(   <Card sx={{ minWidth: 275 }}>
     <CardContent>
       <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-        Word of the Day
+      {bookDetail.subtitle}
+
       </Typography>
       <Typography variant="h5" component="div">
-        be{bull}nev{bull}o{bull}lent
+      {bookDetail.title}
       </Typography>
+      <div
+        className="book-cover"
+        style={{
+          width: 128,
+          height: 193,
+          backgroundImage: `url("${bookDetail.imageLinks && bookDetail.imageLinks.thumbnail}}")`
+          
+        }}
+      ></div>
       <Typography sx={{ mb: 1.5 }} color="text.secondary">
-        adjective
+      {bookDetail.categories}
+
       </Typography>
       <Typography variant="body2">
-        well meaning and kindly.
+      {bookDetail.description}
+
         <br />
         {'"a benevolent smile"'}
       </Typography>
     </CardContent>
-    <CardActions>
-      <Button size="small">Learn More</Button>
-    </CardActions>
+   
   </Card>)
 }
 

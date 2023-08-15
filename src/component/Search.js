@@ -7,7 +7,7 @@ function Search(){
   const [searchedBooks, setSearchedBooks] = useState([]);
   const [searchText, setSearchText] = useState([]);
   const handleSearchTextChange = () => {
-    if (searchText.length) {
+    if (searchText.length>0) {
       BooksAPI.search(searchText).then(searchedBooks => {
         if (searchedBooks) {
           BooksAPI.getAll().then(() => {
@@ -24,7 +24,7 @@ function Search(){
     handleSearchTextChange();
   }, [searchText]);
 
-return(  <div >\
+return(  <div >
       <div className="search-books">
           <div className="search-books-bar">
           <Link to="/">  <a
@@ -51,6 +51,7 @@ return(  <div >\
       {searchedBooks &&
             searchedBooks.map((book, index) => (
               <Book
+              id={book.id}
                 key={index}
                 title={book.title}
                 authors={book.authors}
